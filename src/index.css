@@ -4,6 +4,41 @@
 
 @layer base {
   :root {
+    /* Light theme — cool gray ground, same indigo-blue hue (217°) as dark
+      mode's --primary so the accent doesn't shift identity when the theme
+      toggles. Kept clear of the warm PCI ramp (green→orange) exactly like
+      the dark palette below. */
+    --background: 210 20% 98%;
+    --foreground: 220 26% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 26% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 26% 10%;
+    --primary: 217 91% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 24% 94%;
+    --secondary-foreground: 220 26% 10%;
+    --muted: 214 24% 94%;
+    --muted-foreground: 217 12% 42%;
+    --accent: 214 24% 92%;
+    --accent-foreground: 220 26% 10%;
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 18% 84%;
+    --input: 214 18% 84%;
+    --ring: 217 91% 45%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 26% 10%;
+    --sidebar-primary: 217 91% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 24% 94%;
+    --sidebar-accent-foreground: 220 26% 10%;
+    --sidebar-border: 214 18% 84%;
+    --sidebar-ring: 217 91% 45%;
+  }
+
+  .dark {
     /* Cool graphite ground (lebih dalam & sedikit lebih biru) — memaksimalkan
       separasi hue dari warm PCI ramp (green→orange). */
     --background: 219 20% 5%;
@@ -30,6 +65,14 @@
     --input: 219 12% 25%;
     --ring: 217 91% 60%;
     --radius: 0.625rem;
+    --sidebar-background: 219 18% 7%;
+    --sidebar-foreground: 218 12% 96%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 219 20% 12%;
+    --sidebar-accent: 219 12% 16%;
+    --sidebar-accent-foreground: 218 12% 96%;
+    --sidebar-border: 219 12% 25%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   @media (prefers-reduced-motion: reduce) {

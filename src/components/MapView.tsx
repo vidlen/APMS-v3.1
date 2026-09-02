@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from "react";
 import { X } from "lucide-react";
 import { Map, View } from "ol";
 import TileLayer from "ol/layer/Tile";
@@ -27,6 +27,10 @@ interface MapViewProps {
   onClearBands: () => void;
 }
 
+export interface MapViewHandle {
+  fitToExtent: () => void;
+}
+
 const GEOJSON_PROJECTION_OPTS = {
   dataProjection: "EPSG:4326",
   featureProjection: "EPSG:3857",
@@ -41,7 +45,7 @@ function withAlpha(rgba: string, alpha: number): string {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-export default function MapView({
+const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView({
   selectedYear,
   onFeatureClick,
   selectedSection,
@@ -49,7 +53,7 @@ export default function MapView({
   onExitDetails,
   activeBands,
   onClearBands,
-}: MapViewProps) {
+}, ref) {
   const { sectionsFC, unitsBySection } = useEffectiveYearData(selectedYear);
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<Map | null>(null);
@@ -315,6 +319,21 @@ export default function MapView({
     });
   }, [selectedSection]);
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      fitToExtent: () => {
+        const map = mapInstance.current;
+        const source = baseSourceRef.current;
+        if (!map || !source) return;
+        const extent = source.getExtent();
+        if (!extent || !extent.every((n) => Number.isFinite(n))) return;
+        map.getView().fit(extent, { duration: 400, padding: [40, 40, 40, 40], maxZoom: 16 });
+      },
+    }),
+    []
+  );
+
   // Manage the sample-unit layer when detailedSection (or its effective
   // data — e.g. after an admin edits a unit score) changes
   useEffect(() => {
@@ -398,4 +417,6 @@ export default function MapView({
       )}
     </>
   );
-}
+});
+
+export default MapView;

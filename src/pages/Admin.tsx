@@ -40,8 +40,7 @@ export default function Admin() {
     <div className="flex flex-col w-full h-screen h-dvh bg-background overflow-hidden">
       <header className="shrink-0 flex items-center gap-4 min-h-16 px-4 pt-[env(safe-area-inset-top)] bg-card border-b border-border shadow-sm z-30">
         <Link
-          to="/"
-          state={{ fromAdmin: true }}
+          to="/map"
           className="flex items-center gap-2 p-2 -m-2 rounded-md text-muted-foreground hover:text-foreground transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <ArrowLeft size={15} />
@@ -63,10 +62,10 @@ export default function Admin() {
         </div>
       </header>
 
-      {/* Admin tabs — same tablist pattern as the main workspace tabs
-          (src/pages/Home.tsx), so each area gets its own screen instead of
-          one long stack. Year selection stays outside the tabs since every
-          tab below reads the same selectedYear. */}
+      {/* Admin tabs — same tablist pattern as the pre-redesign workspace
+          tabs, so each area gets its own screen instead of one long stack.
+          Year selection stays outside the tabs since every tab below reads
+          the same selectedYear. */}
       <div
         className="shrink-0 flex items-center justify-center gap-4 bg-card border-b border-border z-20 px-4"
         role="tablist"
