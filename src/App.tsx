@@ -6,6 +6,7 @@ import PavementMap from "./pages/PavementMap";
 import Sections from "./pages/Sections";
 import RiskAnalysis from "./pages/RiskAnalysis";
 import Admin from "./pages/Admin";
+import Login from "./pages/Login";
 import { Toaster } from "@/components/ui/sonner";
 
 const MIN_SPLASH_MS = 2000;
@@ -64,10 +65,9 @@ export default function App() {
           <Route path="/map" element={<PavementMap />} />
           <Route path="/sections" element={<Sections />} />
           <Route path="/risk" element={<RiskAnalysis />} />
+          <Route path="/admin" element={<Admin />} />
         </Route>
-        {/* Admin keeps its own full-screen chrome (not nested in AppShell)
-            until it's redesigned to fit the shell in a later pass. */}
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Toaster />
     </>
