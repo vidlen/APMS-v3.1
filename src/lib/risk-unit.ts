@@ -122,6 +122,7 @@ export interface UnitRiskResult {
   hazardClass: HazardClass;
   dominantDistress: string;
   observedRateClass: ObservedRateClass;
+  pci: number;
   pciIsReal: boolean;
   deltaPci?: number;
   dru: DruRating;
@@ -370,6 +371,7 @@ export function scoreUnit(rawInput: UnitRiskInput, source: LikelihoodSource = DE
     hazardClass,
     dominantDistress,
     observedRateClass: rate,
+    pci: input.pci,
     pciIsReal: input.pciIsReal,
     deltaPci,
     dru,
